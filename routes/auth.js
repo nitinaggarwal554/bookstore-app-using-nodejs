@@ -23,27 +23,25 @@ router.post('/register',function(req,res){
         })
     }
 })
-router.post('/login',function(req,res){
-    User.findOne({
-        username:req.body.username
-    },function(err,user){
-        if(err){
-            throw err;
-        }if(!user){
-            res.status(401).send({success:false,msg:'Authentication failed.user not found.'});
-        }else{
-            User.methods.comparePassword(req.body.password,function(err,isMatch){
-                if(isMatch && !err){
-                    var token=jwt.sign(User.toJSON(),settings.secret);
-                    res.json({success:false,token:'JWT: '+ token })
-                }
-                else{
-                    res.status(401).send({success:false,msg:'Authentication failed.password not match.'});
-                }
-            })
-        }
-    
-    })
-})
 
+router.post('/login', function (req, res) {
+    User.findOne({
+        username: req.body.username
+    }, function (err, user) {
+        if (err) throw err;
+
+        if (!user) {
+            res.status(401).send({ success: false, msg: 'Authentication failed. User not found.' });
+        } else {
+            user.comparePassword(req.body.password, function (err, isMatch) {
+                if (isMatch && !err) {
+                    var token = jwt.sign(user.toJSON(), settings.secret);
+                    res.json({ success: true, token: 'JWT ' + token });
+                } else {
+                    res.status(401).send({ success: false, msg: 'Authentication failed. Wrong password.' });
+                }
+            });
+        }
+    });
+});
 module.exports=router;

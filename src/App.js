@@ -48,13 +48,19 @@ class App extends Component{
                 <tr>
                   <th>Title</th>
                   <th>Author</th>
+                  <th>Description</th>
+                  <th>Publisher</th>
                 </tr>
               </thead>
               <tbody>
                 {this.state.books.map(book => 
                   <tr>
                     <td>{book.title} </td>
-                    <td>{book.author} </td>    
+                    <td>{book.author} </td>   
+                    <td>{book.description} </td>
+                    <td>{book.publisher} </td>  
+
+
                   </tr>
                  )}
               </tbody>

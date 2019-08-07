@@ -42,7 +42,10 @@ onChange = (e) => {
                     <label for="inputPassword" class="sr-only">Email Address</label>
                     <input type="password" class="form-control" placeholder="Enter Password" name="password" value={password} onChange={this.onChange} required></input>
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
-                    
+                    <p>
+                        Already Register?
+                        <Link to="/login">Login</Link>
+                    </p>
                 </form>
             </div>
         );

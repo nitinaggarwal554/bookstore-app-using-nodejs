@@ -37,7 +37,7 @@ router.post('/',passport.authenticate('jwt',{session:false}),function(req,res){
     }else{
         return res.status(403).send({success:false,msg:'Unauthorized'})
     }
-})
+});
 
 
 getToken=function(headers){

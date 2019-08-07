@@ -36,7 +36,7 @@ else{
 }
 })
 
-UserSchema.methods.confirmPassword=(function(passw, next){
+UserSchema.methods.comparePassword=(function(passw, next){
     bcrypt.compare(passw, this.password, function(err, isMatch){
         if(err){
             return next(err);
